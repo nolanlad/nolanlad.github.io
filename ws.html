@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wordle Solutions</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <style>
+        input {
+            text-align: center;
+            
+            height: 200px;
+        }   
+        input { 
+            text-transform: uppercase;
+        }
+    </style>
+    <script src="./nyt_wordle_list_web.js"></script>
+    <script src="./solve_web.js"></script>
+    <script>
+        function nextTab(t,event){
+            var id = t.id;
+            try{
+                console.log(newid)
+                if (event.keyCode != 8) { 
+                    var newid = id.substr(0,1)+(1+parseInt(id.substr(1)))
+                    document.getElementById(newid).focus(); 
+                    return false; 
+                }
+                else{
+                    var newid = id.substr(0,1)+(parseInt(id.substr(1))-1)
+                    document.getElementById(newid).focus(); 
+                    return false; 
+                }
+            }
+            finally{
+                return false;
+            }
+        }
+
+        function guessFromJson(){
+            var dic={};
+            for(let i=0;i<5;i++){
+                row = []
+                for(let j=0;j<5;j++){
+                    id = "f"+(1+i+j*5)
+                    val = document.getElementById(id).value;
+                    if(val.replace(" ","")!=""){
+                        row.push(val)
+                    }
+                    
+                }
+                dic["y"+(i+1)] = row;
+            }
+            for(let i=1;i<6;i++){
+                id = "g"+(i)
+                val = document.getElementById(id).value;
+                if(val.replace(" ","")!=""){
+                    dic["g"+(i)] = val;
+                }
+            }
+            dic["bad"] = document.getElementById("bad").value;
+            return dic
+        }
+        
+    </script>
+    <div class="container justify-content-center w-50">
+        <div style="text-align:center;">
+            <h1>Yellow Letters</h1>
+        </div>
+        <div class="row justify-content-center" id="yellow">
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f1" onKeyUp="nextTab(this,event)" style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" tabindex="2" id="f2" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f3" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f4" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f5" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f6" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f7" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f8" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f9" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f10" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f11" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f12" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f13" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f14" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f15" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f16" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f17" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f18" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f19" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f20" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f21" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f22" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f23" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f24" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="f25" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center;">
+        <h1>Green Letters</h1>
+    </div>
+    <div class="container justify-content-center w-50">
+        <div class="row justify-content-center">
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="g1" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="g2" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="g3" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="g4" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" maxlength="1" id="g5" onKeyUp=nextTab(this,event) style='width:50px;height:50px;'>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align:center;">
+        <h1>Bad Letters</h1>
+    </div>
+    <div class="container justify-content-center w-50">
+        <div class="row justify-content-center">
+            <div class="col-md-5 justify-content-center">
+                <input type="text" class="form-control" id="bad" style='width:290px;height:50px;'>
+            </div>
+            
+        </div>
+        <div class="row justify-content-center">
+            
+            <button type="button" class="btn btn-primary justify-content-center" onclick="listAnswers()">Potential answers</button>
+                    
+            <button type="button" class="btn btn-primary justify-content-center" onclick="listGuesses()">Best next guess</button>
+        </div>
+    </div>
+    <div></div>
+    <div></div>
+    <!-- <div class="container justify-content-center w-50">
+    <button type="button" class="btn btn-primary justify-content-center" onclick="listAnswers()">Potential answers</button>
+                
+    <button type="button" class="btn btn-primary justify-content-center" onclick="listGuesses()">Best next guess</button>
+</div> -->
+    <!-- <div class="container justify-content-center w-75">
+        <div class="row justify-content-center">
+            
+                <button type="button" class="btn btn-primary" onclick="listAnswers()">Potential answers</button>
+                <div></div>
+                <button type="button" class="btn btn-primary" onclick="listGuesses()">Best next guess</button>
+            
+        </div>
+    </div> -->
+    <div style="text-align:center;">
+        <h2 id="anslist_title"></h2>
+    </div>
+    <div style="text-align:center;">
+        <h3 id="wc"></h3>
+    </div>
+    <div style="text-align: center;">
+        <ul id="anslist"></ul>
+    </div>
+    <div class="container justify-content-center w-50" id="anslist2">
+    </div>
+    <script>
+        function createList2(arr) {
+            let list = document.getElementById("anslist");
+            list.className = "list-group";
+
+            for (let i = 0; i < arr.length; i++) {
+                let item = document.createElement("li");
+                item.className = "list-group-item";
+                item.innerHTML = arr[i];
+                list.appendChild(item);
+            }
+            return list;
+        }
+
+        function createList3(arr, columns) {
+            let listHtml = `<div class="row">`;
+            let listCols = [];
+
+            for (let i = 0; i < columns; i++) {
+                listCols[i] = `<div class="col-md-${12/columns}"><ul class="list-group">`;
+
+                for (let j = 0; j < arr.length; j++) {
+                    let item = arr[j];
+
+                    if (j % columns === i) {
+                        listCols[i] += `<li class="list-group-item">${item}</li>`;
+                    }
+                }
+
+                listCols[i] += `</ul></div>`;
+            }
+
+            for (let i = 0; i < listCols.length; i++) {
+                listHtml += listCols[i];
+            }
+
+            listHtml += `</div>`;
+            let d = document.getElementById('anslist2');
+            d.innerHTML = listHtml;
+        }
+
+        function listAnswers(){
+          let title = document.getElementById('anslist_title');
+          title.innerHTML = "Possible Answers"
+          document.getElementById('wc').innerHTML=""
+            var args = guessFromJson();
+            var func = args_to_func(args);
+            var cands = words.filter(func);
+            createList3(cands,3);
+        }
+
+        function listGuesses(){
+            let list = document.getElementById('anslist')
+            list.innerHTML = "";
+            let title = document.getElementById('anslist_title');
+            title.innerHTML = "Best Guesses"
+            var args = guessFromJson()
+            var func = args_to_func(args);
+            var cands = words.filter(func);
+            var [wc,g] = returnBestGuesses(cands);
+            if (g.length > 50) {
+              g = g.slice(0, 50)
+            }
+            createList3(g,3)
+            document.getElementById('wc').innerHTML=("Maximum number of possible solutions with guess: "+wc);
+        }
+    </script>
+    
+    
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
