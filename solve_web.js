@@ -120,58 +120,58 @@ function find_best_guess2(cands){
 
 function args_to_func(args) {
     function foo(w) {
-        if (args.bad != null) {
-            if (!contains_none(args.bad, w)) {
+        if (args.bad.toLowerCase() != null) {
+            if (!contains_none(args.bad.toLowerCase(), w)) {
                 return false;
             }
         }
         //yellow letters
         if (args.y1 != null) {
             for (let c of args.y1) {
-                if (!w.includes(c)) {
+                if (!w.includes(c.toLowerCase())) {
                     return false;
                 }
-                if (w[0] == c) {
+                if (w[0] == c.toLowerCase()) {
                     return false;
                 }
             }
         }
         if (args.y2 != null) {
             for (let c of args.y2) {
-                if (!w.includes(c)) {
+                if (!w.includes(c.toLowerCase())) {
                     return false;
                 }
-                if (w[1] == c) {
+                if (w[1] == c.toLowerCase()) {
                     return false;
                 }
             }
         }
         if (args.y3 != null) {
             for (let c of args.y3) {
-                if (!w.includes(c)) {
+                if (!w.includes(c.toLowerCase())) {
                     return false;
                 }
-                if (w[2] == c) {
+                if (w[2] == c.toLowerCase()) {
                     return false;
                 }
             }
         }
         if (args.y4 != null) {
             for (let c of args.y4) {
-                if (!w.includes(c)) {
+                if (!w.includes(c.toLowerCase())) {
                     return false;
                 }
-                if (w[3] == c) {
+                if (w[3] == c.toLowerCase()) {
                     return false;
                 }
             }
         }
         if (args.y5 != null) {
             for (let c of args.y5) {
-                if (!w.includes(c)) {
+                if (!w.includes(c.toLowerCase())) {
                     return false;
                 }
-                if (w[4] == c) {
+                if (w[4] == c.toLowerCase()) {
                     return false;
                 }
             }
@@ -179,27 +179,27 @@ function args_to_func(args) {
 
         //green letters
         if (args.g1 != null) {
-            if (args.g1 != w[0]) {
+            if (args.g1.toLowerCase() != w[0]) {
                 return false;
             }
         }
         if (args.g2 != null) {
-            if (args.g2 != w[1]) {
+            if (args.g2.toLowerCase() != w[1]) {
                 return false;
             }
         }
         if (args.g3 != null) {
-            if (args.g3 != w[2]) {
+            if (args.g3.toLowerCase() != w[2]) {
                 return false;
             }
         }
         if (args.g4 != null) {
-            if (args.g4 != w[3]) {
+            if (args.g4.toLowerCase() != w[3]) {
                 return false;
             }
         }
         if (args.g5 != null) {
-            if (args.g5 != w[4]) {
+            if (args.g5.toLowerCase() != w[4]) {
                 return false;
             }
         }
