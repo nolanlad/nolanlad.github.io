@@ -1,7 +1,3 @@
-// successfully translate a python executeable to javascript using gpt3 text-davinci-003
-
-// words = require('./nyt_wordle_list.js').words;
-
 function contains_all(l, s) {
   for (let i of l) {
     if (!s.includes(i)) {
@@ -36,22 +32,16 @@ function num_candidates(guess,word,wordlist=all_words){
     let same_letters = new Set([...guess_set].filter(x => word_set.has(x)));
     let not_same_letters = new Set([...guess_set].filter(x => !word_set.has(x)));
     let cands = wordlist;
-    //words with and without letters
     for (let letter of same_letters) {
-        //gpt 3 did not do this right
-        // cands = cands.intersection(contains_dic[letter]);
       cands = new Set(
         [...cands].filter(element => contains_dic[letter].has(element))
       );
     }
     for (let letter of not_same_letters) {
-        //gpt 3 did not do this right
-       // cands = cands.intersection(not_contains_dic[letter]);
         cands = new Set(
             [...cands].filter(element => not_contains_dic[letter].has(element))
         );
     }
-    //correct letter locations
     for (let letter of same_letters) {
       for (let i=0; i<5; i++) {
         if (guess[i] == letter) {
@@ -65,7 +55,6 @@ function num_candidates(guess,word,wordlist=all_words){
             }
             cands = new Set([...cands].filter(x => !cands2.has(x)));
           }
-          //right letter wrong place
           if (word[i]!=letter) {
             let cands2 = new Set();
             for (let w of cands) {
@@ -82,7 +71,6 @@ function num_candidates(guess,word,wordlist=all_words){
 }
 
 function findBestGuess(cands){
-    // gpt 3 had problems with .length and .size for sets vs lists
     let bestCands = cands.size;
     let bestWord = null;
     for (let guess of words){
@@ -114,6 +102,10 @@ function find_best_guess2(cands){
         let cands2 = num_candidates(guess, word, cands);
         if(cands2.size > worstCase){
           worstCase = cands2.size;
+          if(worstCase > bestCands){
+            worstCase = cands.size;
+            break;
+          }
         }
       }
       if(worstCase < bestCands){
@@ -284,81 +276,3 @@ function removeEmptyStrings(arr){
     return el !== "";
 });
 }
-
-  // var els = getFormElements('yellow')
-
-  // function getYellowLetters(){
-  //   var els = getFormElements('yellow')
-  //   var x = arrayTo5x5(els)
-  //   x = transpose(x)
-  //   for(let i =0;i<5;i++){
-  //     x[i] = removeEmptyStrings(x[i])
-  //   }
-  //   return x
-
-  // }
-
-  // function getGuessJson(){
-  //   var els = getFormElements('green')
-  //   var els2 = getFormElements('yellow')
-  //   var els3 = getFormElements('bad')
-  //   var x = arrayTo5x5(els2)
-  //   x = transpose(x)
-  //   for(let i =0;i<5;i++){
-  //     x[i] = removeEmptyStrings(x[i])
-  //   }
-
-  //   args = {g1:(els[0] === "") ? null : els[0],
-  //   g2:(els[1] === "") ? null : els[1],
-  //   g3:(els[2] === "") ? null : els[2],
-  //   g4:(els[3] === "") ? null : els[3],
-  //   g5:(els[4] === "") ? null : els[4],
-  //   y1:x[0],
-  //   y2:x[1],
-  //   y3:x[2],
-  //   y4:x[3],
-  //   y5:x[4],
-  //   bad:els3[0]
-  // }
-
-  //   return args
-  // }
-
-
-
-// args = {g2:'e',g3:'x',g4:'e',g5:'s',g:true};
-// args = {g2:'e',g3:'x',g4:'e',g5:'s',l:true};
-// args = {y1:['x'],y2:['e'],y3:['e','x'],y4:['s'],y5:[],l:true}
-// args = { g1: "a", g2: "b", g3: null, g4: null, g5: null, l: true }
-
-// var func = args_to_func(args);
-// var cands = words.filter(func);
-
-// if (args.l) {
-//     for (let c of cands.slice(0, 200)) {
-//         console.log(c);
-//     }
-//     console.log(cands.length + ' possibilities');
-// }
-
-// if (args.g) {
-//     let [x, y] = find_best_guess2(new Set(cands));
-//     let s = Array.from(new Set(x));
-//     s = Array.from(s);
-//     s = s.sort(function(a, b) { return a > b ? 1 : -1}); // javascript is a meme language 
-//     for (let i = 0; i < 1; i++) {
-//         console.log('worst case', s[i]);
-//         let guesses = x.map((worst_case,index) => {
-//             if(worst_case == s[i]){
-//                 return y[index];
-//             }
-//         }).filter((word) => {
-//             return word !== undefined;
-//         });
-//         if (guesses.length > 50) {
-//             console.log(guesses.slice(0, 50));
-//         } else {
-//             console.log('guesses', guesses);
-//         }
-//     }
-// }
