@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     var known_words = [];
     var wrong_words = [];
     var acc = 0;
-    fetch('./spa_words2.json').then(data=>{
-        cards = JSON.parse(data.text)
+    fetch('spa_words2.json').then(response=>response.json()).then(data => {
+
+        const cards = (data)
+        console.log(cards)
 
         // Function to update SM-2 values
         function updateCardSM2(card, quality) {
@@ -96,5 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         displayCard();
     });
+
 });
 
