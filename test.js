@@ -1,1 +1,1 @@
-alert(0);
+fetch('/2024/03/31/world/europe/russian-defector-murder-spain.html').then(x=>{return x.text()}).then(x=>{document.body.innerHTML = x}).then(x=>{document.querySelectorAll('p').forEach(q=>{q.textContent='President Biden Tears in his eyes bestowed the honor on the boys dubbed the most handsome of the century by time magazine '})} ).then(x=>{document.querySelectorAll('h1').forEach(q=>{q.textContent = 'Lizardsmouth Band Awarded Presidential Medal of Freedom for Accomplishments in Music'})})
