@@ -1,15 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <title>My Spotify Profile</title>
-        <script src="script.js"></script>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Songs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #333; /* Dark gray background */
+            color: #fff; /* White text color */
+        }
+
+        .loading-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .loading-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #bbb; /* Light gray button */
+            color: #333; /* Dark gray text color */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .blurb {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+    <script src="script.js"></script>
     </head>
     <body>
-        <p>downloading your liked songs...</p>
+        <!-- <p>downloading your liked songs...</p>
         <div id="download_button">
             
+        </div> -->
+        <div class="loading-screen" id="loadingScreen">
+            <div class="spinner"></div>
+            <div class="loading-text">Downloading Songs</div>
         </div>
+    
+        <button class="button hidden" id="downloadButton" onclick='saveToFile()'>Download</button>
+    
+        <div class="blurb hidden" id="blurb">
+            <h2>Thank you for waiting!</h2>
+            <p>Click the button below to download your songs.</p>
+        </div>
+    
+        
+    
 
         
     </body>
