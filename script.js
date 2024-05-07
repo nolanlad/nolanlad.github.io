@@ -94,11 +94,10 @@ async function main(){
         console.log(liked_songs)
         csv_content = (listToCSV(liked_songs))
         showDownloadButton();
-        return x
     }
 }
 
-var stuff = main()
+main()
 
 async function redirectToAuthCodeFlow(clientId) {
     const verifier = await generateCodeVerifier(128);
