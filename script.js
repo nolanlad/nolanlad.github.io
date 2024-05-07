@@ -1,6 +1,8 @@
 const clientId = "6fa80d3d497c4659b78c653f4dae224a"; // Replace with your client ID
 
 // const redirect = "http://localhost:8080/index.html"
+// const redirect = window.location.href;
+
 const redirect = 'https://nolanlad.github.io/spotify_dl.html'
 var csv_content = null;
 function listToCSV(list) {
@@ -59,6 +61,12 @@ function saveToFile() {
     URL.revokeObjectURL(url);
 }
 
+function showDownloadButton() {
+    document.getElementById('loadingScreen').classList.add('hidden');
+    document.getElementById('downloadButton').classList.remove('hidden');
+    document.getElementById('blurb').classList.remove('hidden');
+}
+
 function getUrlParams() {
     const urlParams = new URLSearchParams(window.location.search);
     return Object.fromEntries(urlParams.entries());
@@ -85,26 +93,7 @@ async function main(){
         }
         console.log(liked_songs)
         csv_content = (listToCSV(liked_songs))
-        x = document.getElementById('download_button')
-        y = document.createElement('button')
-        y.onclick = saveToFile
-        y.innerText = 'Download'
-        x.appendChild(y)
-        // for(let i = 50;)
-        // getAccessToken(clientId, code).then(accessToken=>{
-        //     console.log(accessToken)
-        //     const profile = fetchLikedSongs(accessToken);
-            
-        //     return profile
-        // }).then(profile=>{
-        //     console.log(profile)
-        //     // populateUI(profile)
-        // })
-
-        
-        // console.log('debugg2')
-        // const profile = fetchProfile(accessToken);
-        // populateUI(profile);
+        showDownloadButton();
         return x
     }
 }
