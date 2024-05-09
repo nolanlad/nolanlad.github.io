@@ -1,0 +1,131 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* font-family: Arial, sans-serif; */
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.gradient-bg {
+    background: linear-gradient(to bottom, #FF69B4, #FFFFFF); /* Initial gradient colors */
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensure it's behind other content */
+    
+}
+
+.gradient-bg-2 {
+    background: linear-gradient(to bottom, #4CAF50, #2196F3);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Ensure it's behind other content */
+    display: block;
+    
+}
+
+
+.content {
+    padding: 20px;
+    margin-top: 100px; /* Adjust as needed to avoid overlap with background */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align content horizontally */
+}
+
+h1, h2, h3 {
+    font-size: 3rem; /* Adjust the font size as needed */
+    /* margin-bottom: 300px;  */
+    margin-top: 300px; /* Increase the margin between headers */
+    margin-bottom: 100px;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+h1, h2, h3 {
+    font-size: 2rem; /* Adjust the font size as needed */
+    /* margin-bottom: 300px;  */
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    width: 80%; /* Adjust width as needed */
+    max-width: 600px; /* Set a maximum width */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+    margin-top: 20px;
+  }
+
+  /* Style for circular photo */
+  .card img {
+    width: 100px; /* Adjust size as needed */
+    max-width: 100px; /* Set a maximum width */
+    min-width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Make the photo circular */
+    margin-right: 20px;
+  }
+
+  /* Style for text blurb */
+  .card .text {
+    flex: 1; /* Allow text to expand to fill remaining space */
+  }
+
+  /* Style for card title */
+  .card h2 {
+    margin-top: 0; /* Remove default margin */
+    color: #333333;
+  }
+
+  /* Style for card content */
+  .card p {
+    color: #666666;
+  }
+
+  .hidden {
+      display: none;
+  }
+
+  .loading-text {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.loading-screen {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    /* border: 5px solid #2296f1; */
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none;
+}

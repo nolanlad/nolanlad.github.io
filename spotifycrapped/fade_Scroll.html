@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Gradient Background with Text</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="gradient-bg"></div>
+    <div class="gradient-bg-2"></div>
+    <div class="loading-screen hidden" id="loadingScreen">
+        <div class="spinner"></div>
+        <div class="loading-text">Calculating how shitty your taste in music is... this may take a while, it's <i>really</i> bad.</div>
+    </div>
+    <div class="content hidden">
+        <h1 class="fade-in">Your Spotify Crapped 2024 Has Arrived</h1>
+        <h1 class="fade-in" id='genderHeader'>Battle of the Sexes</h1>
+        <p class="fade-in" id='genderBlurb'></p>
+        <h1 class="fade-in" id='pctMen'></h1>
+        <h1 class="fade-in" id='pctWomen'></h1>
+        <h1 class="fade-in" id='pctNB'></h1>
+        
+        <h1 class="fade-in color-change">Crime and Punishment</h1>
+        <p class="fade-in">Your favorite artists didn't just commit the crime of writing bad music. Some of them took it to the next level! Here are some of your favorite neerdowells:</p>
+        <div class='fade-in' id='felonContainer'>
+    
+        </div>
+        <h1 class="fade-in">Do you know who my father is?</h1>
+        <p class="fade-in">You liked a lot of nepo-babies this year here are some of your favorites:</p>
+        <div class='fade-in' id='nepoContainer'></div>
+        <h1>See you Next Year!</h1>
+        <script src="script.js"></script>
+    </div>
+</body>
+</html>
