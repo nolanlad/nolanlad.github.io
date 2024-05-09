@@ -441,15 +441,15 @@ function filterObjectsByIds(ids, objects) {
 }
 
 async function get_gender_stats(artists){
-    return fetch('http://localhost:8080/gender.json').then(resp=>{return resp.json()}).then(data=>{return mergeArrays(data,artists)}) 
+    return fetch('gender.json').then(resp=>{return resp.json()}).then(data=>{return mergeArrays(data,artists)}) 
 }
 
 async function get_crime_stats(artists){
-    return fetch('http://localhost:8080/crime.json').then(resp=>{return resp.json()}).then(data=>{return mergeArrays(data,artists)}) 
+    return fetch('crime.json').then(resp=>{return resp.json()}).then(data=>{return mergeArrays(data,artists)}) 
 }
 
 async function get_nepo_babies(artists){
-    return fetch('http://localhost:8080/nepo_babies.json').then(resp=>{return resp.json()}).then(data=>{return filterObjectsByIds(data,artists)}) 
+    return fetch('nepo_babies.json').then(resp=>{return resp.json()}).then(data=>{return filterObjectsByIds(data,artists)}) 
 }
 
 function showResults() {
