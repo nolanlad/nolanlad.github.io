@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert("No cards due for review! Come back later.");
                 return;
             }
-            // const card = dueCards[Math.floor(Math.random() * dueCards.length)];
-            const card = dueCards[acc];
+            const card = dueCards[Math.floor(Math.random() * dueCards.length)];
+            // const card = dueCards[acc];
             acc+=1;
             const options = generateOptions(card.answer);
 
