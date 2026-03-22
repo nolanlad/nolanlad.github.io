@@ -719,6 +719,23 @@ const btnNext      = document.getElementById('btn-next');
 const btnBack      = document.getElementById('btn-back');
 const btnRestart   = document.getElementById('btn-restart');
 
+//random shuffle algorithm
+function shuffle(array) {
+  let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
+
 // ---- CSV Parser ----
 function parseCSV(text) {
   const lines = text.trim().split(/\r?\n/);
@@ -833,6 +850,7 @@ function startStudy() {
     q: row[qi] || '',
     a: row[ai] || ''
   }));
+  shuffle(cards)
 
   correct = 0; wrong = 0; currentIdx = 0;
 
@@ -920,17 +938,19 @@ btnSubmit.addEventListener('click', () => {
   btnSubmit.disabled = true;
 
   const answer = cards[currentIdx].a;
-  const norm = s => s.toLowerCase().replace(/[^\w\s]/g, '').trim();
+  const norm = s => s.toLowerCase().trim();
   const ni = norm(input), na = norm(answer);
 
   let cls, title, body;
-  if (ni === na) {
+//   if (ni === na) {
+if (na.split(',').find(x=>{return (norm(x)===(ni))}) ){
     cls = 'correct'; title = '✓ Correct!'; body = `Answer: ${answer}`;
     correct++;
-  } else if (na.includes(ni) || ni.includes(na) || similarity(ni, na) > 0.7) {
-    cls = 'partial'; title = '~ Close!'; body = `Correct answer: ${answer}`;
-    correct++;
-  } else {
+  }
+//    else if (na.includes(ni) || ni.includes(na) || similarity(ni, na) > 0.7) {
+//     cls = 'partial'; title = '~ Close!'; body = `Correct answer: ${answer}`;
+//     correct++;}
+  else {
     cls = 'wrong'; title = '✗ Incorrect'; body = `Correct answer: ${answer}`;
     wrong++;
   }
